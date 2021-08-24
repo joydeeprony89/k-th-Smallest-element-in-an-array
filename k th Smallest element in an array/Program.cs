@@ -6,9 +6,10 @@ namespace k_th_Smallest_element_in_an_array
     {
         static void Main(string[] args)
         {
-            int[] arr = { 0, 1, -1, -2, 9 };
-            int k = 1;
-            Console.Write("K'th largest element is " + FindKthSmallest(arr, k));
+            int[] arr = { 0, -1, -1, -2, 9 };
+            Console.WriteLine($"Input is - { string.Join(",", arr)}");
+            int k = 3;
+            Console.Write($"{k}'th smallest element is " + FindKthSmallest(arr, k));
         }
 
 
@@ -46,6 +47,22 @@ namespace k_th_Smallest_element_in_an_array
             }
             Swap(nums, i, r);
             return i;
+        }
+
+        static int Another_Partition(int[] nums, int l, int r)
+        {
+            int pivot = nums[r];
+            int i = l - 1;
+            for(int j = l; j <= r-1; j++)
+            {
+                if(nums[j] < pivot)
+                {
+                    i++;
+                    Swap(nums, i, j);
+                }
+            }
+            Swap(nums, i + 1, r);
+            return i + 1;
         }
 
         static void Swap(int[] nums, int i, int j)
